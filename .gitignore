@@ -2,8 +2,6 @@
 # http://git-scm.com/docs/gitignore
 
 logs/
-public/uploads/
-
 *~
 *.sw[mnpcod]
 *.log

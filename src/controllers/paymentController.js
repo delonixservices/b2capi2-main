@@ -103,28 +103,29 @@
 //   res.send(formbody);
 // };
 
-// exports.paymentResponseHandler = async (req, res, next) => {
-//   console.log('Payment response...');
-//   console.log(req.body);
+exports.paymentResponseHandler = async (req, res, next) => {
+  console.log('Payment response...');
+  console.log(req.body);
 
-//   const orderNo = req.body.orderNo;
-//   const encResp = req.body.encResp;
+  const orderNo = req.body.orderNo;
+  const encResp = req.body.encResp;
 
-//   const bookingFailedMsg = `Due to some technical problem the booking is not confirmed. The amount will be refunded if it is deducted from your account. Kindly book again.  Please write an email to support@delonixtravel.com incase of further queries.`;
+  const bookingFailedMsg = `Due to some technical problem the booking is not confirmed. The amount will be refunded if it is deducted from your account. Kindly book again.  Please write an email to support@delonixtravel.com incase of further queries.`;
 
-//   if (!orderNo) {
-//     const error = new Error('OrderNo missing from payment_response from ccavanue.');
-//     error.statusCode = 500;
-//     return next(error);
-//   }
-//   // console.log('Booking ID: ' + orderNo);
-//   const dataObj = await Transaction.findById(orderNo);
-//   // console.log(dataObj);
-//   if (!dataObj) {
-//     const error = new Error('Sorry invalid OrderNo, cannot find any transaction with this order no');
-//     error.statusCode = 500;
-//     return next(error);
-//   }
+  if (!orderNo) {
+    const error = new Error('OrderNo missing from payment_response from Razor pay.');
+    error.statusCode = 500;
+    return next(error);
+  }
+  // console.log('Booking ID: ' + orderNo);
+  const dataObj = await Transaction.findById(orderNo);
+  // console.log(dataObj);
+  if (!dataObj) {
+    const error = new Error('Sorry invalid OrderNo, cannot find any transaction with this order no');
+    error.statusCode = 500;
+    return next(error);
+  }
+}
 
 //   const paymentData = ccavanue.decrypt(encResp, workingKey);
 //   const queryStrings = url.parse("/?" + paymentData, true).query;

@@ -45,6 +45,5 @@ router.get('/process-payment/:id', processPayment);
 
 router.post('/payment-response-handler', paymentResponseHandler);
 
-router.post('/webhook', handleWebhook);
 
 module.exports = router;
